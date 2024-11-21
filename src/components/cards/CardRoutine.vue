@@ -10,16 +10,16 @@
       {{ routine.getState() }}
     </span>
     <section class="flex flex-row gap-2 flex-wrap p-2 bg-black/60 rounded-xl">
-      <button @click="emitInProgress"
-        class="px-4 py-2 rounded-lg border-2 font-bold bg-cyan-600" :class="{'opacity-60' : selectStatus === 0}">
-        InProgress
-      </button>
       <button @click="emitPaused"
-        class="px-4 py-2 rounded-lg border-2 font-bold bg-red-600" :class="{'opacity-60' : selectStatus === 1}">
+        class="px-4 py-2 rounded-lg border-2 font-bold bg-red-600 outline-none" :class="{'opacity-60' : selectStatus === 0}">
         Paused
       </button>
+      <button @click="emitInProgress"
+        class="px-4 py-2 rounded-lg border-2 font-bold bg-cyan-600 outline-none" :class="{'opacity-60' : selectStatus === 1}">
+        InProgress
+      </button>
       <button @click="emitCompleted"
-        class="px-4 py-2 rounded-lg border-2 font-bold bg-green-600" :class="{'opacity-60' : selectStatus === 2}">
+        class="px-4 py-2 rounded-lg border-2 font-bold bg-green-600 outline-none" :class="{'opacity-60' : selectStatus === 2}">
         Completed
       </button>
     </section>
@@ -41,13 +41,13 @@ const changeSelectStatus = (index: number) => {
   selectStatus.value = index
 }
 
-const emitInProgress = () => {
-  emit('setInProgress', props.routine.id)
+const emitPaused = () => {
+  emit('setPaused', props.routine.id)
   changeSelectStatus(0)
 }
 
-const emitPaused = () => {
-  emit('setPaused', props.routine.id)
+const emitInProgress = () => {
+  emit('setInProgress', props.routine.id)
   changeSelectStatus(1)
 }
 
